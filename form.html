@@ -9,24 +9,21 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="form.html">Navbar</a>
+        <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#">Back Office Page</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-           
-              
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
-            </li>
+            
+            
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -38,13 +35,30 @@
       <div class="container">
           <div class="row">
               <div class="col-6">
-                <ul class="list-group">
-                    <li class="list-group-item">An item</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A fourth item</li>
-                    <li class="list-group-item">And a fifth one</li>
-                  </ul>
+                <form>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="name">Name</label>
+                      <input type="name" class="form-control" id="name">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="description">Description</label>
+                      <textarea type="text" class="form-control" id="description" row="4"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="brand">Brand</label>
+                    <input type="text" class="form-control" id="brand" placeholder="1234 Main St">
+                  </div>
+                    
+                    <div class="form-group col-md-2">
+                      <label for="price">Price</label>
+                      <input type="number" class="form-control" id="price">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                  </div>
+                  
+                </form>
               </div>
           </div>
       </div>
