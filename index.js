@@ -20,8 +20,6 @@ const handlePostSubmit = function(event){
     })
     .then(response => response.json())
     .then(jsonData=>{
-
-        console.log(jsonData)
     })
      
     .catch(err=>{
@@ -29,7 +27,9 @@ const handlePostSubmit = function(event){
     })
 }
 
-const editPost = function(event){
+
+
+const searchWith = function(event){
     event.preventDefault()
     fetch("https://striveschool-api.herokuapp.com/api/product/", {
         headers: {
@@ -39,33 +39,19 @@ const editPost = function(event){
     .then(res=> res.json())
     .then(products=>{
 
+        let searchInput = event.target.value
+        let selectedFilter= document.getElementById("selectFilter").value
+        console.log(searchInput)
+        console.log(selectedFilter)
+        // const filteredData = (users.filter((user)=> user[category].toLowerCase().includes(userInput.toLowerCase())))
+        const filteredItems = (products.filter((product)=> product[selectedFilter].toLowerCase().includes(searchInput.toLowerCase())))
+        console.log(filteredItems)
 
-    products[0] = {
-        name: "Acer Chromebook",
-        description: "The light laptop on earth",
-        brand: "Acer",
-        price: "300",
-        imageUrl: "https://static.fnac-static.com/multimedia/Images/PT/NR/23/86/73/7570979/1505-1.jpg",
-    }
-
-    console.log(newProduct.name)
-    fetch("https://striveschool-api.herokuapp.com/api/product/", {
-        method:"POST",
-        body:JSON.stringify(newProduct),
-        headers: {
-        'Content-Type': 'application/json',
-        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWIwYWU1OTRjZmY1ZjAwMTU5MGJkYWYiLCJpYXQiOjE2Mzg5Njg5MjIsImV4cCI6MTY0MDE3ODUyMn0.I62rqMBiig_57YNcK0VzC7hRA65djJbbJ_wdeyHseRc"
-        }
-    })
-    .then(response => response.json())
-    .then(jsonData=>{
-
-        console.log(jsonData)
-    })
-     
-    .catch(err=>{
-        console.error(err)
-    })
+        displayProducts(filteredItems)
+ 
+})
+.catch(err=>{
+    console.error(err)
 })
 }
 
@@ -79,12 +65,19 @@ const loadProducts = function(){
     })
     .then(response => response.json())
     .then(jsonData =>{
-            console.log(jsonData)
+            let items = jsonData
+            displayProducts(items)
+    } )
+    .catch(err=>{
+        console.log(err)
+        
+    })
+}
 
-        let displayCards = document.getElementById("displayCards")
-    jsonData.forEach(item =>{
+const displayProducts = function(items){
 
-   
+    let displayCards = document.getElementById("displayCards")
+    items.forEach(item =>{
            displayCards.innerHTML +=`<div class="col-12 col-sm-6 col-lg-4 col-xl-3">
             <div class="card" style="width: 18rem;">
   <img src="${item.imageUrl}" class="card-img-top" alt="...">
@@ -98,12 +91,7 @@ const loadProducts = function(){
   </div>
   </div>
 </div>`
-}) 
-    } )
-    .catch(err=>{
-        console.log(err)
-        
-    })
+})
 }
 
 loadProducts()
