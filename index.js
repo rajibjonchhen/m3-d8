@@ -43,9 +43,10 @@ const searchWith = function(event){
         let selectedFilter= document.getElementById("selectFilter").value
         console.log(searchInput)
         console.log(selectedFilter)
+        console.log(products)
         // const filteredData = (users.filter((user)=> user[category].toLowerCase().includes(userInput.toLowerCase())))
         const filteredItems = (products.filter((product)=> product[selectedFilter].toLowerCase().includes(searchInput.toLowerCase())))
-        console.log(filteredItems)
+        // console.log(filteredItems)
 
         displayProducts(filteredItems)
  
@@ -70,24 +71,24 @@ const loadProducts = function(){
     } )
     .catch(err=>{
         console.log(err)
-        
+        displayProducts(err)
     })
 }
 
 const displayProducts = function(items){
 
     let displayCards = document.getElementById("displayCards")
-    items.forEach(item =>{
+    items.reverse().forEach(item =>{
            displayCards.innerHTML +=`<div class="col-12 col-sm-6 col-lg-4 col-xl-3">
             <div class="card" style="width: 18rem;">
   <img src="${item.imageUrl}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">Product Name :${item.name}</h5>   
     <p class="card-text">User Id : ${item._id}</p>
-    <p class="card-text">Mobile Brand : ${item.brand}</p>
-    <p class="card-text">Mobile Price : ${item.price}</p>
-    <p class="card-text">Mobile Info : ${item.description}</p>
-    <a href="#" class="btn btn-primary">know more about </a>
+    <p class="card-text"> Brand : ${item.brand}</p>
+    <p class="card-text"> Price : ${item.price}</p>
+    <p class="card-text"> Info : ${item.description}</p>
+    <a href="detail.html?id=${item._id}" class="btn btn-primary">Detail </a>
   </div>
   </div>
 </div>`
